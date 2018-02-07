@@ -7,13 +7,10 @@
 	<title>Quem vai fazer o deploy?</title>
 	<style>
 		html,
-		body { background-color: #f1f1f1; }
+		body { background-color: #000; }
 
 		.container {
-			background-color: #000;
 			color: #fff;
-			border: 1px solid #ccc;
-			box-shadow: 15px 15px 15px #afafaf;
 			font-family: monospace;
 			padding: 5em;
 			position: absolute;
@@ -24,24 +21,29 @@
 		}
 
 		.title {
-			font-size: 32px;
+			font-size: 50px;
 			margin: 0 0 1em 0;
 		}
 
 		.container-resposta {
 			color: #ff0;
-			font-size: 40px;
+			font-size: 70px;
 			max-height: 90px;
 			overflow: hidden;
 			text-transform: uppercase;
 		}
 
 		.container-resposta p {
-			animation: write .8s ease .5s;
+			animation: write 1s ease 1s;
 			animation-fill-mode: forwards;
 			margin: 0;
-			max-width: 0;
+			max-width: 3px;
 			text-indent: 2px;
+		}
+
+		.container-resposta span {
+			display: inline-block;
+			padding: 0 .5em;
 		}
 
 		.resposta {
@@ -63,20 +65,20 @@
 		.cursor {
 			display: inline-block;
 			position: relative;
-			padding-right: 0.6em;
+			/* padding-right: 0.6em; */
 			overflow: hidden;
 		}
 
 		.cursor:before {
 			background-color: #ff0;
-			animation: blank .4s alternate infinite .5s;
+			animation: blank .4s alternate infinite;
 			content: ' ';
 			display: block;
 			opacity: 0;
 			position: absolute;
 			top: 50%;
 			right: 0px;
-			height: 30px;
+			height: 55px;
 			transform: translateY( -50% );
 			width: 3px;
 		}
@@ -124,14 +126,14 @@
 			'Mucilon',
 			'Pelu',
 			'TH',
-			'Champson',
+			'Shampson',
 		];
 		var respostaConteiner = document.querySelector('.container-resposta');
 		var resposta = colaboradores[ Math.floor( Math.random() * colaboradores.length ) ];
 
 		setTimeout(function() {
-			respostaConteiner.innerHTML = '<p class="cursor">' + resposta + '</p>';
-		}, 1000);
+			respostaConteiner.innerHTML = '<p class="cursor"><span>' + resposta + '</span></p>';
+		}, 2000);
 
 	</script>
 </body>
