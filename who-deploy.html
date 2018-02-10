@@ -6,13 +6,16 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Quem vai fazer o deploy?</title>
 	<style>
+		* { box-sizing: border-box; }
+
 		html,
 		body { background-color: #000; }
 
 		.container {
 			color: #fff;
 			font-family: monospace;
-			padding: 5em;
+			min-width: 360px;
+			padding: 1em;
 			position: absolute;
 			right: 50%;
 			text-align: center;
@@ -25,7 +28,7 @@
 			margin: 0 0 1em 0;
 		}
 
-		.container-resposta {
+		.list-container {
 			color: #ff0;
 			font-size: 70px;
 			max-height: 90px;
@@ -33,21 +36,8 @@
 			text-transform: uppercase;
 		}
 
-		.container-resposta p {
-			animation: write 1s ease 1s;
-			animation-fill-mode: forwards;
-			margin: 0;
-			max-width: 3px;
-			text-indent: 2px;
-		}
-
-		.container-resposta span {
-			display: inline-block;
-			padding: 0 .5em;
-		}
-
-		.resposta {
-			animation: up .5s linear infinite;
+		.list {
+			animation: up .4s linear infinite;
 			display: inline-block;
 			list-style: none;
 			margin: 0;
@@ -55,71 +45,70 @@
 			position: relative;
 		}
 
-		.container-resposta p,
-		.resposta li {
+		.list li,
+		.list-item {
 			height: 90px;
 			line-height: 90px;
-		 }
-
-
-		.cursor {
-			display: inline-block;
-			position: relative;
-			/* padding-right: 0.6em; */
-			overflow: hidden;
 		}
 
-		.cursor:before {
+		.list-item {
+			animation: write 1s ease 1.5s;
+			animation-fill-mode: forwards;
+			display: inline-block;
+			margin: 0;
+			max-width: 3px;
+			overflow: hidden;
+			position: relative;
+			text-indent: 2px;
+		}
+
+		.list-item:before {
+			animation: blank .4s alternate linear infinite;
 			background-color: #ff0;
-			animation: blank .4s alternate infinite;
 			content: ' ';
 			display: block;
+			height: 55px;
 			opacity: 0;
 			position: absolute;
-			top: 50%;
 			right: 0px;
-			height: 55px;
+			top: 50%;
 			transform: translateY( -50% );
 			width: 3px;
 		}
 
+		.list-item span {
+			display: inline-block;
+			padding: 0 .5em;
+		}
+
+		/* Animações */
 		@keyframes blank {
-			0% { opacity: 1; }
+			0%   { opacity: 1; }
 			100% { opacity: 0; }
 		}
 
 		@keyframes up {
-			0% { transform: translateY( 90px ); }
+			0%   { transform: translateY( 90px ); }
 			100% { transform: translateY( -100% ); }
 		}
 
 		@keyframes write {
-			0% { max-width: 0; }
+			0%   { max-width: 0; }
 			100% { max-width: 100%; }
 		}
-
-
 	</style>
 </head>
 <body>
 	<div class="container">
 		<h1 class="title">Quem vai fazer o deploy?</h1>
-		<div class="container-resposta">
-			<ul class="resposta">
-				<li>Douglão</li>
-				<li>Fumaça</li>
-				<li>Pedin</li>
-				<li>Mucilon</li>
-				<li>Pelu</li>
-				<li>TH</li>
-				<li>Champson</li>
-			</ul>
+
+		<div class="list-container">
+			<ul class="list"></ul>
 		</div>
 	</div>
 
-
 	<script>
-		var colaboradores = [
+		var lotteryItems = [
 			'Douglão',
 			'Fumaça',
 			'Pedin',
@@ -128,13 +117,20 @@
 			'Matheus',
 			'Xampson',
 		];
-		var respostaConteiner = document.querySelector('.container-resposta');
-		var resposta = colaboradores[ Math.floor( Math.random() * colaboradores.length ) ];
+		var $containerList = document.querySelector('.list-container');
+		var $list          = $containerList.querySelector('.list');
+		var listItemTxt    = lotteryItems[ Math.floor( Math.random() * lotteryItems.length ) ];
+
+		lotteryItems.map(function( item ) {
+			var li = document.createElement('li');
+			li.textContent = item;
+
+			$list.appendChild( li );
+		});
 
 		setTimeout(function() {
-			respostaConteiner.innerHTML = '<p class="cursor"><span>' + resposta + '</span></p>';
+			$containerList.innerHTML = '<p class="list-item"><span>' + listItemTxt + '</span></p>';
 		}, 2000);
-
 	</script>
 </body>
 
