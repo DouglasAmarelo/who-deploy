@@ -5,101 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Quem vai fazer o deploy?</title>
-	<style>
-		* { box-sizing: border-box; }
-
-		html,
-		body { background-color: #000; }
-
-		.container {
-			color: #fff;
-			font-family: monospace;
-			min-width: 360px;
-			padding: 1em;
-			position: absolute;
-			right: 50%;
-			text-align: center;
-			top: 50%;
-			transform: translate(50%, -50%);
-		}
-
-		.title {
-			font-size: 50px;
-			margin: 0 0 1em 0;
-		}
-
-		.list-container {
-			color: #ff0;
-			font-size: 70px;
-			max-height: 90px;
-			overflow: hidden;
-			text-transform: uppercase;
-		}
-
-		.list {
-			animation: up .4s linear infinite;
-			display: inline-block;
-			list-style: none;
-			margin: 0;
-			padding: 0;
-			position: relative;
-		}
-
-		.list li,
-		.list-item {
-			height: 90px;
-			line-height: 90px;
-		}
-
-		.list-item {
-			animation: write 1s ease 1.5s;
-			animation-fill-mode: forwards;
-			display: inline-block;
-			margin: 0;
-			max-width: 3px;
-			overflow: hidden;
-			position: relative;
-			text-indent: 2px;
-		}
-
-		.list-item:before {
-			animation: blank .4s alternate linear infinite;
-			background-color: #ff0;
-			content: ' ';
-			display: block;
-			height: 55px;
-			opacity: 0;
-			position: absolute;
-			right: 0px;
-			top: 50%;
-			transform: translateY( -50% );
-			width: 3px;
-		}
-
-		.list-item span {
-			display: inline-block;
-			padding: 0 .5em;
-			white-space: nowrap;
-		}
-
-		/* Animações */
-		@keyframes blank {
-			0%   { opacity: 1; }
-			100% { opacity: 0; }
-		}
-
-		@keyframes up {
-			0%   { transform: translateY( 90px ); }
-			100% { transform: translateY( -100% ); }
-		}
-
-		@keyframes write {
-			0%   { max-width: 0; }
-			100% { max-width: 100%; }
-		}
-	</style>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 	<div class="container">
 		<h1 class="title">Quem vai fazer o deploy?</h1>
 
@@ -108,31 +17,7 @@
 		</div>
 	</div>
 
-	<script>
-		var lotteryItems = [
-			'Douglão',
-			'Fumaça',
-			'Pedin',
-			'Mucilon',
-			'Pelu',
-			'Matheus',
-			'Xampson',
-		];
-		var $containerList = document.querySelector('.list-container');
-		var $list          = $containerList.querySelector('.list');
-		var listItemTxt    = lotteryItems[ Math.floor( Math.random() * lotteryItems.length ) ];
-
-		lotteryItems.map(function( item ) {
-			var li = document.createElement('li');
-			li.textContent = item;
-
-			$list.appendChild( li );
-		});
-
-		setTimeout(function() {
-			$containerList.innerHTML = '<p class="list-item"><span>' + listItemTxt + '</span></p>';
-		}, 2000);
-	</script>
+	<script src="js/script.js"></script>
 </body>
 
 </html>
