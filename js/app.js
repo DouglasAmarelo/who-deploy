@@ -1,29 +1,55 @@
-(function( wind, doc ){
+(function( doc ){
 	'use strict';
 
-	var lotteryItems = [
-		'Douglas H.',
-		'Guilherme H.',
-		'Pedro H.',
-		'Lucas H.',
-		'Gabriel H.',
-		'Matheus H.',
-		'Wandreus H.',
-		'Fábio H.',
-	];
-	var $containerList = document.querySelector('.list-container');
-	var $list          = $containerList.querySelector('.list');
-	var listItemTxt    = lotteryItems[ Math.floor( Math.random() * lotteryItems.length ) ];
+	function app() {
+		var lotteryItems = [
+			'Douglas H.',
+			'Guilherme H.',
+			'Pedro H.',
+			'Lucas H.',
+			'Gabriel H.',
+			'Matheus H.',
+			'Wandreus H.',
+			'Fábio H.',
+		];
+		var $containerList = doc.querySelector('.list-container');
+		var $list = $containerList.querySelector('.list');
+		var listItemTxt = lotteryItems[ Math.floor( Math.random() * lotteryItems.length ) ];
+		var $music = doc.querySelector('.music');
+		var self = this;
 
-	lotteryItems.map(function( item ) {
-		var li = document.createElement('li');
-		li.textContent = item;
+		return {
+			init: function() {
+				this.startMusic();
+				this.startLOttery()
 
-		$list.appendChild( li );
-	});
+				setTimeout(this.updateList, 10300);
+				setTimeout(this.stopMusic, 15800);
+			},
 
-	setTimeout(function() {
-		$containerList.innerHTML = '<p class="list-item"><span>' + listItemTxt + '</span></p>';
-	}, 2000);
+			startMusic: function() {
+				$music.setAttribute('autoplay', true );
+			},
 
-})( window, document );
+			stopMusic: function() {
+				$music.src = ' ';
+			},
+
+			startLOttery: function() {
+				lotteryItems.map(function( item ) {
+					var li = doc.createElement('li');
+					li.textContent = item;
+
+					$list.appendChild( li );
+				});
+			},
+
+			updateList: function() {
+				$containerList.innerHTML = '<p class="list-item"><span>' + listItemTxt + '</span></p>';
+			}
+		}
+	}
+
+	app().init();
+
+})( document );
