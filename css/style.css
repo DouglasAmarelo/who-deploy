@@ -93,6 +93,16 @@ body { background-color: #1c1c1c; }
 	white-space: nowrap;
 }
 
+.list-item small {
+	display: inline-block;
+	font-size: 22px;
+	line-height: 22px;
+	max-width: 200px;
+	text-transform: none;
+	vertical-align: middle;
+	white-space: pre-wrap;
+}
+
 /* Animações */
 @keyframes blank {
 	0%   { opacity: 1; }
